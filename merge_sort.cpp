@@ -50,11 +50,19 @@ void mergeSort(int* arr, int l, int r){
     int m = (l + r - 1) / 2;
 
 	if(make_thread && (r-m > 1000)){
+
 		std::future<void> f = std::async(std::launch::async, [&](){
 			mergeSort(arr, l, m);
 		});
 		mergeSort(arr, m + 1, r);
 		f.wait();
+	
+		// вариант 2 через thread, но без future 
+	/*
+		std::thread f (mergeSort, std::ref(arr), l, m);
+		mergeSort(arr, m + 1, r);
+		f.join();
+	*/
     }
 	else{
 		mergeSort(arr, l, m);

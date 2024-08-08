@@ -5,7 +5,7 @@
 
 int main(){
 	srand(0);
-	long arr_size = 2000000;
+	long arr_size = 2000000; // при значении выше и дефолтная функция, и многопоточная mergeSort выдает SegFault
 	int* array = new int[arr_size];
 	for(long i=0;i<arr_size; i++) {
 		array[i] = rand() % 500000;
